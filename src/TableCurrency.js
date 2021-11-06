@@ -2,17 +2,6 @@ import React from 'react';
 
 export default function TableCurrency(props) {
 
-   /*  const rows = props.currencyTable.map(currency => (
-    currencyOptions={currencyOptions}
-    selectCurrency={fromCurrency}
-    onChangeCurrency={e => setFromCurrency(e.target.value)}
-    onChangeAmount={handleFromAmountChange}
-    amount={fromAmount}
-
-    <tr key={currencyOptions}>
-      <th>{FromAmount}</th>
-      <td>{fromAmount}</td>
-    </tr>)) */
     const {
         currencyOptions,
         onChangeCurrency,
