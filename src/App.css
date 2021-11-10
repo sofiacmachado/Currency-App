@@ -1,38 +1,114 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap");
+
+body {
+    font-family: "Roboto",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+    margin-top: 10px;
+    background-color: rgb(236, 236, 236);
+    max-height: 80px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.footer {
+    margin-top: 10px;
+    background-color: rgb(236, 236, 236);
+    height: 200px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+.btn-navbar, .btn-footer {
+    color: rgb(29, 90, 10);
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 11px;
 }
 
-.App-link {
-  color: #61dafb;
+.copyright {
+    color: rgb(107, 165, 90);
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logo {
+    height: 55px;
 }
+
+.logofooter{
+    height: 30px;
+    float: left;
+}
+
+.nav-item {
+    max-height: auto;
+    max-width: 100px;
+}
+
+.socialmedia {
+    height: 15px;
+}
+
+.btn-socialmedia {
+    float: right;
+}
+
+.btn-currency {
+    background-color: rgb(98, 128, 42);
+    margin-left: 5px;
+    color: rgb(255, 255, 255);
+    font-family: 'Roboto';
+    font-weight: 200;
+    font-size: 12px;
+    border-radius: 5px;
+    border-style: none;
+    box-shadow:2px 1px 3px 1px rgb(184, 184, 184);
+}
+
+.input-currency {
+    color: rgb(51, 51, 51);
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 5px;
+    border-style: none;
+    box-shadow:2px 1px 3px 1px rgb(184, 184, 184);
+}
+
+.table-currency-converter {
+    display: flex;
+    justify-items: center;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: hidden;
+    box-shadow:2px 2px 5px 2px rgb(184, 184, 184);
+    margin: 3%;
+    padding: 3%;
+}
+
+.title {
+    position:absolute;
+    color: rgb(98, 128, 42);
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 14px;
+    
+}
+
+.table-currency {
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: hidden;
+    box-shadow:2px 2px 5px 2px rgb(184, 184, 184);
+    padding-top: 50px;
+}
+
+.table-rates {
+}
+
