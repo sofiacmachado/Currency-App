@@ -1,32 +1,36 @@
 import React from 'react';
-//import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import logo from './themoneymoney.png';
+import { Link } from "react-router-dom";
+import logo from './themoneymoney1.png';
 import './App.css';
 
 class Navbar extends React.Component {
     render() {
         return (
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="navbar-brand">
-                    <button class="btn btn-outline-success d-flex" type="submit"><img className='logo' alt='the money money' src={logo}/></button>
+            <nav className="navbar navbar-expand-sm justify-content-center">
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item align-self-center">
+                    <Link to='/CurencyConverter'>
+                        <button className="btn btn-navbar" type="submit">Currency Converter</button>
+                    </Link>
                     </li>
-                    <li class="nav-item">
-                    <button class="btn btn-outline-success d-flex" type="submit">link</button>
+                    <li className="nav-item align-self-center ">
+                    <Link to='/TableCurrency'>
+                        <button className="btn btn-navbar" type="submit">Exchange Rates</button>
+                    </Link>
                     </li>
-                    <li class="nav-item">
-                    <button class="btn btn-outline-success d-flex" type="submit">link</button>
+                    <li className="nav-item align-self-center ">
+                    <button className="btn btn-navbar" type="submit">Money Transfer Tips</button>
+                    </li>
+                    <li className="navbar-brand mx-5 align-self-center">
+                    <button className="btn" type="submit"><img className='logo' alt='the money money' src={logo}/></button>
+                    </li>
+                    <li className="nav-item align-self-center">
+                        <button className="btn btn-navbar" type="submit">Sign Up</button>
+                    </li>
+                    <li className="nav-item align-self-center">
+                        <button className="btn btn-navbar" type="submit">Log In</button>
                     </li>
                 </ul>
-                <button class="btn btn-outline-success d-flex" type="submit">Sign Up</button>
-                <button class="btn btn-outline-success d-flex" type="submit">Log In</button>
-                </div>
-            </div>
             </nav>
         )
     }

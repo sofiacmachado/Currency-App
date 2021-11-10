@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import { json, checkStatus } from './utils';
 import Navbar from './Navbar';
 import Footer from './Footer';
-
 import CurrencyConverter from './CurrencyConverter';
 import TableCurrency from './TableCurrency';
 
@@ -16,20 +16,16 @@ function App() {
   const [baseCurrency, setBaseCurrency] = useState('EUR');
   const [fromCurrency, setFromCurrency] = useState();
   const [toCurrency, setToCurrency] = useState();
-  const [exchangeRate, setExchangeRate] = useState();
+  const [exchangeRate, setExchangeRate] = useState(1);
   const [amount, setAmount] = useState(1);
-  const [amountInFromCurrency, setAmountInFromCurrency] = useState(true);
+ // const [amountInFromCurrency, setAmountInFromCurrency] = useState(true);
   const [rates, setRates] = useState({});
 
   let toAmount, fromAmount;
-  if(amountInFromCurrency) {
     fromAmount = amount;
-    toAmount = amount * exchangeRate
-  } else {
-    toAmount = amount;
-    fromAmount = amount / exchangeRate;
-  }
-  
+    toAmount = amount * exchangeRate;
+
+
   useEffect(() => {
     fetch(host)
     .then(checkStatus)
@@ -57,12 +53,12 @@ function App() {
 
   function handleFromAmountChange(e) {
     setAmount(e.target.value)
-    setAmountInFromCurrency(true)
+  //  setAmountInFromCurrency(true)
   }
 
   function handleToAmountChange(e) {
     setAmount(e.target.value)
-    setAmountInFromCurrency(false)
+//    setAmountInFromCurrency(false)
   }
 
   function handleChangeBase(e) {
@@ -74,33 +70,53 @@ function App() {
       .then(data => setRates(data.rates))
   }
 
+const TheCurrencyConverter = () => {
+  return (<div className='table-currency-converter d-flex  justify-content-center my-5'>
+      <h2 className='title mb-5'>Currency Converter</h2>
+        <CurrencyConverter
+            currencyOptions={currencyOptions}
+            selectCurrency={fromCurrency}
+            onChangeCurrency={e => setFromCurrency(e.target.value)}
+            onChangeAmount={handleFromAmountChange}
+            amount={fromAmount} 
+            />
+            
+            <CurrencyConverter
+            currencyOptions={currencyOptions}
+            selectCurrency={toCurrency}
+            onChangeCurrency={e => setToCurrency(e.target.value)}
+            onChangeAmount={handleToAmountChange}
+            amount={toAmount}
+            />
+  </div>);
+}
+
+
+const TheTableCurrency = () => {
+  return (<div className='container d-flex justify-content-center my-5'>
+     <div className='table-currency py-5 px-5'>
+        <h2 className='title pb-5'>Exchange Rates</h2>
+          <TableCurrency currencyOptions={currencyOptions}
+              onChangeCurrency={handleChangeBase}
+              baseCurrency={baseCurrency}
+              rates={rates}
+              />
+      </div>
+    </div>);
+}
 
   return (
     <div>
-      <Navbar />
-      <CurrencyConverter
-      currencyOptions={currencyOptions}
-      selectCurrency={fromCurrency}
-      onChangeCurrency={e => setFromCurrency(e.target.value)}
-      onChangeAmount={handleFromAmountChange}
-      amount={fromAmount} 
-      />
-      
-      <CurrencyConverter
-      currencyOptions={currencyOptions}
-      selectCurrency={toCurrency}
-      onChangeCurrency={e => setToCurrency(e.target.value)}
-      onChangeAmount={handleToAmountChange}
-      amount={toAmount}
-      />
-      <TableCurrency currencyOptions={currencyOptions}
-      onChangeCurrency={handleChangeBase}
-      baseCurrency={baseCurrency}
-      rates={rates}
-      />
-      
-      <Footer />
-    </div>
+    <Router>
+        <Navbar />
+        <Routes>
+          <Route path="CurrencyConverter" element={<TheCurrencyConverter />} />
+          <Route path="TableCurrency" element={<TheTableCurrency />} />
+          <Route path="*" element={<TheCurrencyConverter />} />
+        </Routes>
+    </Router>
+        <Footer />
+      </div>
   );
 }
 

@@ -1,31 +1,32 @@
 import React from 'react';
+import logo from './themoneymoney1.png';
+import instagramlogo from './instagramlogo.png';
+import facebooklogo from './facebooklogo.png';
+import twitterlogo from './twitterlogo.png';
+import './App.css';
 
 class Footer extends React.Component {
     render() {
         return (
-        <footer class="footer">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-12 text-center">
-                        <h2 class="footer-heading"> <img src="/media/the_money_money.png" alt="The Money Money" width="500" height="600" /></h2>
-                        <p class="menu">
-                            <button>Home</button>
-                            <button>Agent</button>
-                            <button>About</button>
-                            <button>Listing</button>
-                            <button>Blog</button>
-                            <button>Contact</button>
+        <footer className="footer">
+            <div className="container ">
+                <div className="row justify-content-center">
+                    <div className="col-md-12 text-center ">
+                        <p className="menu mt-5">
+                            <img className='logo logofooter mt-4' alt='the money money' src={logo}/>
+                            <button className='btn btn-footer'>Terms of Service</button>
+                            <button className='btn btn-footer'>Privacy</button>
+                            <button className='btn btn-footer'>FAQ</button>
+                            <button className='btn btn-footer'>About Us</button>
+                            <button className='btn btn-socialmedia mt-4'><img className='instagramlogo socialmedia' alt='instagram' src={instagramlogo}/></button>
+                            <button className='btn btn-socialmedia mt-4'><img className='facebooklogo socialmedia' alt='facebook' src={facebooklogo}/></button>
+                            <button className='btn btn-socialmedia mt-4'><img className='twitterlogo socialmedia' alt='twitter' src={twitterlogo}/></button>
                         </p>
-                        <ul class="footer-social p-0">
-                            <li class=""><button title="" data-original-title="Twitter"><i class="fa-brands fa-twitter"></i></button></li>
-                            <li class=""><button title="" data-original-title="Facebook"><i class="fa-brands fa-facebook-f"></i></button></li>
-                            <li class=""><button title="" data-original-title="Instagram"><i class="fa-brands fa-instagram"></i></button></li>
-                        </ul>
                     </div>
                 </div>
-                <div class="row mt-5">
-                    <div class="col-md-12 text-center">
-                        <p class="copyright">
+                <div className="row">
+                    <div className="col-md-12 text-center pt-5">
+                        <p className="copyright">
                         Copyright © 2021 All rights reserved
                         </p>
                     </div>
