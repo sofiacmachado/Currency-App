@@ -11,7 +11,7 @@ export default function CurrencyConverter(props) {
     } = props;
 
     return (
-        <div className='mx-3 my-3 d-flex align-items-center mt-5'>
+        <div className='currency-converter-box mx-3 my-3 d-flex align-items-center mt-5'>
             <input type='number' className='input input-currency' value={amount} onChange={onChangeAmount} />
             <select className='btn btn-currency dropdown-toggle' value={selectCurrency} onChange={onChangeCurrency}>
                 {currencyOptions.map(option => (

@@ -25,9 +25,9 @@ export default function TableCurrency(props) {
                 </thead>
                 <tbody>{Object.keys(rates).map(toCurrency => (
                     <tr key={toCurrency}>
-                        <td>{toCurrency}</td>
-                        <td>{rates[toCurrency]}</td>
-                        <td>{1/rates[toCurrency]}</td>
+                        <td className='td-currency'>{toCurrency}</td>
+                        <td className='td-currency'>{rates[toCurrency]}</td>
+                        <td className='td-currency'>{1/rates[toCurrency]}</td>
                     </tr>
                 ))
                 }</tbody>

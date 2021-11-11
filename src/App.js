@@ -71,23 +71,25 @@ function App() {
   }
 
 const TheCurrencyConverter = () => {
-  return (<div className='table-currency-converter d-flex  justify-content-center my-5'>
-      <h2 className='title mb-5'>Currency Converter</h2>
+  return (<div className='currency-converter-container my-5'>
+      <h2 className='title'>Currency Converter</h2>
+      <div className="d-flex flex-column flex-sm-row justify-content-center">
         <CurrencyConverter
-            currencyOptions={currencyOptions}
-            selectCurrency={fromCurrency}
-            onChangeCurrency={e => setFromCurrency(e.target.value)}
-            onChangeAmount={handleFromAmountChange}
-            amount={fromAmount} 
-            />
+          currencyOptions={currencyOptions}
+          selectCurrency={fromCurrency}
+          onChangeCurrency={e => setFromCurrency(e.target.value)}
+          onChangeAmount={handleFromAmountChange}
+          amount={fromAmount} 
+        />
             
-            <CurrencyConverter
-            currencyOptions={currencyOptions}
-            selectCurrency={toCurrency}
-            onChangeCurrency={e => setToCurrency(e.target.value)}
-            onChangeAmount={handleToAmountChange}
-            amount={toAmount}
-            />
+        <CurrencyConverter
+          currencyOptions={currencyOptions}
+          selectCurrency={toCurrency}
+          onChangeCurrency={e => setToCurrency(e.target.value)}
+          onChangeAmount={handleToAmountChange}
+          amount={toAmount}
+        />
+      </div>
   </div>);
 }
 
@@ -95,7 +97,7 @@ const TheCurrencyConverter = () => {
 const TheTableCurrency = () => {
   return (<div className='container d-flex justify-content-center my-5'>
      <div className='table-currency py-5 px-5'>
-        <h2 className='title pb-5'>Exchange Rates</h2>
+        <h2 className='title'>Exchange Rates</h2>
           <TableCurrency currencyOptions={currencyOptions}
               onChangeCurrency={handleChangeBase}
               baseCurrency={baseCurrency}

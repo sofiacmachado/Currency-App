@@ -6,31 +6,42 @@ import './App.css';
 class Navbar extends React.Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-sm justify-content-center">
-                <ul className="navbar-nav mr-auto">
-                    <li className="nav-item align-self-center">
-                    <Link to='/CurencyConverter'>
-                        <button className="btn btn-navbar" type="submit">Currency Converter</button>
-                    </Link>
-                    </li>
-                    <li className="nav-item align-self-center ">
-                    <Link to='/TableCurrency'>
-                        <button className="btn btn-navbar" type="submit">Exchange Rates</button>
-                    </Link>
-                    </li>
-                    <li className="nav-item align-self-center ">
-                    <button className="btn btn-navbar" type="submit">Money Transfer Tips</button>
-                    </li>
-                    <li className="navbar-brand mx-5 align-self-center">
-                    <button className="btn" type="submit"><img className='logo' alt='the money money' src={logo}/></button>
-                    </li>
-                    <li className="nav-item align-self-center">
-                        <button className="btn btn-navbar" type="submit">Sign Up</button>
-                    </li>
-                    <li className="nav-item align-self-center">
-                        <button className="btn btn-navbar" type="submit">Log In</button>
-                    </li>
-                </ul>
+            <nav className="navbar navbar-expand-sm">
+                <div className="navbar-left" id="navbarSupportedContent">
+                    <ul className="navbar-nav" id="navbarMenuSmall">
+                        <li className="nav-item d-flex">
+                        <Link to='/CurencyConverter'>
+                            <button className="btn btn-navbar" type="submit">Currency Converter</button>
+                        </Link>
+                        </li>
+                        <li className="nav-item d-flex">
+                        <Link to='/TableCurrency'>
+                            <button className="btn btn-navbar" type="submit">Exchange Rates</button>
+                        </Link>
+                        </li>
+                        <li className="nav-item d-flex">
+                        <button className="btn btn-navbar" type="submit">Money Transfer Tips</button>
+                        </li>
+                    </ul>
+                </div>
+                {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>   
+                </button> */}
+                <span className="navbar-brand navbar-collapse collapse justify-content-center">
+                    <img className='logo' alt='the money money' src={logo}/>
+                </span>
+                        
+                <div className="navbar-collapse collapse navbar-right" id="navbarSupportedContent">
+                    <ul className="navbar-nav">
+                        <li className="nav-item ">
+                            <button className="btn btn-navbar" type="submit">Sign Up</button>
+                        </li>
+                        <li className="nav-item">
+                            <button className="btn btn-navbar" type="submit">Log In</button>
+                        </li>
+                    </ul>
+                </div>
+               
             </nav>
         )
     }
