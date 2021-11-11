@@ -101,10 +101,6 @@ body {
     text-align: center;
 }
 
-.currency-converter-box {
-
-}
-
 .th-currency {
     color: rgb(29, 29, 29);
     font-family: 'Roboto';
@@ -161,4 +157,9 @@ body {
 
 #navbarMenuSmall {
     flex-direction: row;
+}
+
+#myChart {
+    position: relative;
+    height: 50vh;
 }

@@ -6,9 +6,13 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import CurrencyConverter from './CurrencyConverter';
 import TableCurrency from './TableCurrency';
-
+import CurrencyCharts, { createChart } from './CurrencyCharts';
+ 
 const host = 'https://altexchangerateapi.herokuapp.com/latest';
+const hostBase = 'https://altexchangerateapi.herokuapp.com';
 
+const endDate = new Date().toISOString().split('T')[0];
+const startDate = new Date((new Date).getTime() - (30 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0];
 
 function App() {
 
@@ -20,10 +24,10 @@ function App() {
   const [amount, setAmount] = useState(1);
  // const [amountInFromCurrency, setAmountInFromCurrency] = useState(true);
   const [rates, setRates] = useState({});
+  const [historyRates, setHistoryRates] = useState(null);
 
-  let toAmount, fromAmount;
-    fromAmount = amount;
-    toAmount = amount * exchangeRate;
+  let fromAmount = amount;
+  let toAmount = amount * exchangeRate;
 
 
   useEffect(() => {
@@ -39,16 +43,32 @@ function App() {
       setRates(data.rates)
       setBaseCurrency(data.base)
     })
-  }, [])
+  }, []);
  
   useEffect(() => {
     if (fromCurrency != null && toCurrency != null) {
-      fetch(`${host}?from=${fromCurrency}&to=${toCurrency}`)
-      .then(checkStatus)
-      .then(json)
-      .then(data => setExchangeRate(data.rates[toCurrency]))
+      if (fromCurrency == toCurrency) {
+        setExchangeRate(1.0)
+        setHistoryRates(null);
+      } else {
+        // first `fetch` to get exchange rates for a given currency pair
+        fetch(`${host}?from=${fromCurrency}&to=${toCurrency}`)
+        .then(checkStatus)
+        .then(json)
+        .then(data => setExchangeRate(data.rates[toCurrency]));
+        // second `fetch` to get the history of exchange rates for the same pair
+        // url example: ${host}/2019-01-01..2019-01-30?from=USD&to=JPY
+        fetch(`${hostBase}/${startDate}..${endDate}?from=${fromCurrency}&to=${toCurrency}`)
+        .then(checkStatus)
+        .then(json)
+        .then(data => {
+          setHistoryRates(data);
+          createChart(fromCurrency, toCurrency, data)
+        })
+        .catch(error => console.error(error.message));
+      }
     }
-  }, [fromCurrency, toCurrency])
+  }, [fromCurrency, toCurrency]);
 
 
   function handleFromAmountChange(e) {
@@ -62,12 +82,11 @@ function App() {
   }
 
   function handleChangeBase(e) {
-    setBaseCurrency(e.target.value)
-
+    setBaseCurrency(e.target.value);
     fetch(`${host}?from=${e.target.value}`)
-      .then(checkStatus)
-      .then(json)
-      .then(data => setRates(data.rates))
+    .then(checkStatus)
+    .then(json)
+    .then(data => setRates(data.rates));
   }
 
 const TheCurrencyConverter = () => {
@@ -93,6 +112,17 @@ const TheCurrencyConverter = () => {
   </div>);
 }
 
+const TheCurrencyCharts = () => {
+  return (<CurrencyCharts
+    currencyOptions={currencyOptions}
+    historyRates={historyRates}
+    selectFromCurrency={fromCurrency}
+    selectToCurrency={toCurrency}
+    onChangeFromCurrency={e => setFromCurrency(e.target.value)}
+    onChangeToCurrency={e => setToCurrency(e.target.value)}
+  />);
+}
+
 
 const TheTableCurrency = () => {
   return (<div className='container d-flex justify-content-center my-5'>
@@ -114,6 +144,7 @@ const TheTableCurrency = () => {
         <Routes>
           <Route path="CurrencyConverter" element={<TheCurrencyConverter />} />
           <Route path="TableCurrency" element={<TheTableCurrency />} />
+          <Route path="CurrencyCharts" element={<TheCurrencyCharts />} />
           <Route path="*" element={<TheCurrencyConverter />} />
         </Routes>
     </Router>

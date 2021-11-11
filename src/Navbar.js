@@ -20,7 +20,9 @@ class Navbar extends React.Component {
                         </Link>
                         </li>
                         <li className="nav-item d-flex">
-                        <button className="btn btn-navbar" type="submit">Money Transfer Tips</button>
+                        <Link to='/CurrencyCharts'>
+                        <button className="btn btn-navbar" type="submit">Currency Charts</button>
+                        </Link>
                         </li>
                     </ul>
                 </div>
